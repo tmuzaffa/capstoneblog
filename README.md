@@ -170,11 +170,11 @@ I found the prediction of missing feature part most difficult, as the metrics we
 Improvements:
 We only had 4 demographic attributes, more attributes could be provided to improve the model prediction and accuracy. 
 Further improvements can be made, if only send offers to the customers who respond to it, as offers may be costly and hit the bottom line of the company. Another improvement that can be made to the above analysis is to use regression model to predict the profit of promotional and no promotional offers on the monthly data. Such a model was not used due to machine and time limitation. 
-Github: 
+##### Github: 
 Link to github is below
 -	https://github.com/tmuzaffa/Capstone
 
-Data: 
+##### Data: 
 Link to month_data.csv is below
 -	https://drive.google.com/open?id=1xBSCFzOz3u4_acn9XshoDW1qZzMCU0SB 
 
