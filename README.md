@@ -1,5 +1,5 @@
 # Starbucks Promotional Strategy: A Machine Learning Approach
-![png](1.png)
+![png](01.png)
 
 
 There has been an exponential increase in the use of Artificial Intelligence (AI) and Machine Learning (ML) in the marketing  strategy by businesses around the globe. AI and ML  have impacted not just marketing and sales but various other field in an unprecedented way (Siau & Yang, 2017). Use of metadata and social networks for promotions have increased  and have led to increased profits (Sundsoy, Bjelland, Asif, Pentalnd, & Yves-Alexandre). 
