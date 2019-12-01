@@ -1,0 +1,2 @@
+# capstoneblog
+blog for capstone
