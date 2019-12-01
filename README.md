@@ -57,7 +57,7 @@ Metrics used for data pre-processing are below
 RMSE is a commonly used to optimize the models. Optimization of model involve minimizing RMSE 
 RMSE is a commonly used to optimize the models. Optimization of model involve minimizing RMSE 
 
-RMSE= $$\sqrt{a} $$,
+RMSE= $\sqrt{a} $,
 
 #### BUSINESS UNDERSTANDING
 
