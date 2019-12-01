@@ -91,7 +91,7 @@ Looking at income distribution we can see that most users have annual income gre
 
 while signing up for the rewards program. However, system doesn’t provide any default value for gender and income, when user doesn’t provide that info. We confirmed that by plotting histograms for age with missing gender info, and income distribution
 
-![png](08.png)
+![png](08.PNG)
 
 Since 12% of data either has missing values, or incorrect age, which is significant portion of the total data set. Instead of dropping that data, we used an ML algorithm to predict users age, gender, and income data
 
