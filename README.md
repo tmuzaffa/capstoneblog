@@ -57,7 +57,7 @@ Metrics used for data pre-processing are below
 - F1 score (Wikipedia, n.d.)
 RMSE is a commonly used to optimize the models. Optimization of model involve minimizing RMSE 
 
-![png](02.png)
+![png](02.PNG)
 
 Interpretation:
 TP: model predicted positive and its correct
@@ -79,15 +79,15 @@ Now similarly we take a  look at the profile data set.
 There were total of 17000 users who were part of this study. By looking at the data it was clear that the data is not complete and has big fraction as missing values. This would require us to use either NAN fill technique or a ML algorithm to  predict values based on user behavior.  We looked at the age, gender, and income distribution of these users. 
 Looking at the histogram on the right, we could see a potential problem in the data set. More than 12% of users are 118 years old. This suggests that this is some default age that system is automatically populating in the data when user doesn’t provide the information. 
 
-![png](05.png)
+![png](05.PNG)
 
 
-![png](06.png)
+![png](06.PNG)
 
 When we analyzed the gender distribution, we could see that there are more men who are Starbucks reward user than women. We can also see that we do not have gender distribution for all 17000 users and there are definitely missing values. 
 Looking at income distribution we can see that most users have annual income greater than $60,000. By looking further we also concluded that for users whose gender was missing, their income data was also missing and they all seem to have an age of 118 years old which was highly unlikely to be true. This seems to solidify our suspicion that 118 is the default age that system is populating when user doesn’t provide that information 
 
-![png](07.png)
+![png](07.PNG)
 
 while signing up for the rewards program. However, system doesn’t provide any default value for gender and income, when user doesn’t provide that info. We confirmed that by plotting histograms for age with missing gender info, and income distribution
 
@@ -95,7 +95,7 @@ while signing up for the rewards program. However, system doesn’t provide any 
 
 Since 12% of data either has missing values, or incorrect age, which is significant portion of the total data set. Instead of dropping that data, we used an ML algorithm to predict users age, gender, and income data
 
-![png](09.png)
+![png](09.PNG)
 
 By looking at the transactional data we could see that transcript data consist of dictionary under the column name value, which contains offer_id. offer_id is also available in the portfolio data. We extracted info from this dictionary and merged the table transaction with portfolio. Another thing to be noted here was that, booth transcript and portfolio did not have any missing values, so the missing value processing was needed to be only done on the profile data set. First we extracted the info from dictionary
 ### Methodology:
@@ -111,12 +111,12 @@ After separating missing values  we moved towards model application to predict a
 Calculating above statistics resulted in creation of large number of features that might not be useful for the model to do prediction. So we  use PCA for dimensionality reduction. PCA is a dimension-reduction tool that is used to reduce the large set of variables into a minimum set that still contains enough information to fully characterize the large set. This procedure transforms a number of correlated variables into a small number of uncorrelated variables called principle components (PC).  (NCSU, n.d.)
 The first PC accounts for as much of variability in the data as possible, and each succeeding PC accounts for as much of the remaining variability possible. 
 We used PCA to estimate the number of components needs to best explain the variance in the data set.  We could see below that n=50, variance levels off, we used  n= 50. 
-![png](10.png)
+![png](10.PNG)
 
 We used XGBRegressor and XGBClassifiers as models for age, income (regression problems) and gender (multiclass classification problem). We used Grid search to optimize the model and we used K-Fold cross validation with 5 folds. 
 Now by using these model we were able to predict age, income, and gender of missing values in the data set. Below are the new age, gender, and  income distribution
 Now we can see the income distribution of the users with missing data, it is uniform distribution however our RMSE metric is very high 26188 but since the model is only relying on engineered features, and model has not insight into the characteristic of the data so this results is acceptable
-![png](11.png)
+![png](11.PNG)
 
 ##### Income best parameters:
 max_depth =8, min_child_weight = 100, 
@@ -126,7 +126,7 @@ Similarly we did the age prediction of the missing values. RMSE again was not fa
 ##### Age best parameters:
 max_depth =8, min_child_weight = 470,  n_estimator = 100
 
-![png](12.png)
+![png](12.PNG)
 
 ##### Gender best parameters:
 max_depth =7, min_child_weight = 490,  n_estimator = 100
@@ -135,20 +135,20 @@ After predicting the missing values, we merged the predicted data with known dat
 
 #### Feature Engineering:
 After recreating profile data set, age, income, and gender distributions were replotted to confirm we do not  have any anomalies in the data.
-![png](13.png)
+![png](13.PNG)
 
 After merging, we recreated some of the features for the whole date set that we created above. After that we created the monthly transactional data for each offer. This was done by calculating the cross product of all successful offer, tried offers with all transaction data. We checked if spending occurred during the validity of the offer, before or after. If the offer is successful, then the spending should occur after the offer is received, viewed, transactions made, and redeemed (i.e. reward received by user). Similarly if the offer is tried, it would be received, viewed, transaction made however reward is not redeemed. 
 We also calculated monthly spending for each offer and also calculated the month during which offer was most profitable
 ### Results:
 Below are the months during which particular offer was most profitable
 
-![png](14.png)
+![png](14.PNG)
 
-![png](15.png)
+![png](15.PNG)
 
-![png](16.png)
+![png](16.PNG)
 
-![png](17.png)
+![png](17.PNG)
 
 Above charts show the profit made for each offer in particular month and profit made without that particular offer in that month. The month number is the number of months since the member became rewards user to the time member received the offer. 
 We can see that each offer has a month where it is highly profitable. So each offer should be focused on users with different months category. e.g. Offer 8 brings in higher profit for month 16, i.e. users who joined program 16 months ago are more prone to using such offer. So when a user turns 16 months old from the time they joined the rewards program, they should be sent offer number 8. 
